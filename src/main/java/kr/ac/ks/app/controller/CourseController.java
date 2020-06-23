@@ -73,19 +73,13 @@ public class CourseController {
 
     @GetMapping("course/delete/{id}")
     public String deleteCourse(@PathVariable("id") Long id, Model model) {
-        @OnDelete(action = OnDeleteAction.CASCADE)
-        private Lesson lesson;
-        private Student student;
-//        Lesson lesson = lessonRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-//        Student student = studentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-//        studentRepository.delete(student);
-//        lessonRepository.delete(lesson);
-//        model.addAttribute("lessons", lessonRepository.findAll());
-//        model.addAttribute("students", studentRepository.findAll());
-//        return "redirect:/lessons";
-
-        // onDelete(action = OnDelete.CASCADE)
-        //private Parent parent;
+        Lesson lesson = lessonRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        Student student = studentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        studentRepository.delete(student);
+        lessonRepository.delete(lesson);
+        model.addAttribute("lessons", lessonRepository.findAll());
+        model.addAttribute("students", studentRepository.findAll());
+        return "redirect:/lessons";
     }
 
 }
