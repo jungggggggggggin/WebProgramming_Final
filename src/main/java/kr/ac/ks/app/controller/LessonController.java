@@ -52,7 +52,7 @@ public class LessonController {
     @PostMapping("lesson/update/{id}")
     public String updateLesson(Lesson lesson) {
         lessonRepository.save(lesson);
-        return "redirect:/";
+        return "redirect:/lessons";
     }
 
     @GetMapping("lesson/delete/{id}")
